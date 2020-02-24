@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "code": "DOC401",
+      "type": "result",
+      "message": "string"
+    }
+  ]
+}

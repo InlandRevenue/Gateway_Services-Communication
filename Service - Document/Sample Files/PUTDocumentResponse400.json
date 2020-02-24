@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "code": "DOC301",
+      "type": "result",
+      "message": "string"
+    }
+  ]
+}

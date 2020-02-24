@@ -1,0 +1,22 @@
+{
+  "Documents": [
+    {
+      "DocumentID": 5413355273,
+      "AccountType": "INC",
+      "DocumentCategory": "RTNFIN",
+      "Description": "Account statement December 2019",
+      "FileName": "statement_2019-12.csv",
+      "FilingPeriod": "2020-03-31",
+      "DateTimeCreated": "2020-01-15T13:58:28"
+    },
+    {
+      "DocumentID": 5418079294,
+      "AccountType": "INC",
+      "DocumentCategory": "RTNFIN",
+      "Description": "Account statement January 2020",
+      "FileName": "statement_2020-01.csv",
+      "FilingPeriod": "2020-03-31",
+      "DateTimeCreated": "2020-02-15T12:16:22"
+    }
+  ]
+}

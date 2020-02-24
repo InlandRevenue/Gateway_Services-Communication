@@ -1,0 +1,16 @@
+{
+  "Documents": [
+    {
+      "DocumentID": 0,
+      "DateTimeCreated": "string",
+      "MailType": "string",
+      "Description": "string",
+      "AccountType": "AIL",
+      "AccountID": "string",
+      "FilingPeriod": "string",
+      "Redirected": true,
+      "FileName": "string",
+      "DocumentCategory": "GENATC"
+    }
+  ]
+}
