@@ -1,0 +1,24 @@
+{
+  "Documents": [
+    {
+      "MailType": "aL0077",
+      "Description": "Post-bankruptcy IRD number",
+      "DocumentID": 5404631446,
+      "AccountType": "",
+      "AccountID": "",
+      "Redirected": false,
+      "FilingPeriod": "9999-12-31",
+      "DateTimeCreated": "2018-12-10T10:07:09"
+    },
+    {
+      "MailType": "aL0001",
+      "Description": "GST Registration Confirmation",
+      "DocumentID": 5404631674,
+      "AccountType": "GST",
+      "AccountID": "139122291GST003",
+      "Redirected": false,
+      "FilingPeriod": "9999-12-31",
+      "DateTimeCreated": "2019-12-10T15:04:12"
+    }
+  ]
+}
