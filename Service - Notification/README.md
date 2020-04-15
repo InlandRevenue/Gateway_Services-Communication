@@ -59,7 +59,7 @@
     		* [Request body with all fields](Sample%20Files/Sample_POST_List_RequestBody.json)
     		* [Request body with mandatory fields](Sample%20Files/Sample_POST_List_RequestBody_Mandatory.json)
     		* [200 Response body](Sample%20Files/Sample_POST_List_ResponseBody.json)
-   		 * [400 Response body](Sample%20Files/Sample_Error_ResponseBody.json)
+   		* [400 Response body](Sample%20Files/Sample_Error_ResponseBody.json)
 
 
 ## Mock environment information
@@ -82,7 +82,7 @@ Description | URL
         ```
      2. JWT
         * Alternatively a self-issued JWT may be used to access the service.
-        * Please consult the [Notification service build pack](Build%20pack%20-%20Notifications.pdf) for information on the token structure.
+        * Please consult the [Notification service build pack](Build%20pack%20-%20Notifications%20v1.pdf) for information on the token structure.
         * The mock service does not validate the following JWT attributes:
             * "sub" field
             * "iss" field
