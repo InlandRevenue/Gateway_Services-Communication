@@ -24,12 +24,10 @@
 	- View and download the [Notifications YAML](Notifications.yaml)
 
 - Build pack
-	- [Download the Notifications build pack](Build%20Pack%20-%20Notifications%20v1.pdf)
+	- [Download the Notifications build pack](Build%20pack%20-%20Notifications%20v1.pdf)
 
 - Message samples
 	- [View message samples for requests and responses](#-message-samples)
-
-- Markdown view of the [Notifications.yaml](Notifications.md)
 
 >**NOTE:** The included [Notifications.yaml](Notifications.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
 
