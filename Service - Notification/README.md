@@ -56,10 +56,10 @@
 ---
 * Sample JSON payload messages
 	* POST /List - Notification Service List
-    		* [Request body with all fields](Sample%20Files/Sample_POST_List_RequestBody.json)
-    		* [Request body with mandatory fields](Sample%20Files/Sample_POST_List_RequestBody_Mandatory.json)
-    		* [200 Response body](Sample%20Files/Sample_POST_List_ResponseBody.json)
-   		* [400 Response body](Sample%20Files/Sample_Error_ResponseBody.json)
+		* [Request body with all fields](Sample%20Files/Sample_POST_List_RequestBody.json)
+		* [Request body with mandatory fields](Sample%20Files/Sample_POST_List_RequestBody_Mandatory.json)
+		* [200 Response body](Sample%20Files/Sample_POST_List_ResponseBody.json)
+		* [400 Response body](Sample%20Files/Sample_Error_ResponseBody.json)
 
 
 ## Mock environment information
