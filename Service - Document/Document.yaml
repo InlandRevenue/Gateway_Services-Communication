@@ -3,45 +3,12 @@ info:
   title: Document
   description: 'This is the document service, which allows documents to be submitted to and received from Inland Revenue'
   version: ""
-host: 'eservices-test-gateway.npnsp.ird.govt.nz'
-basePath: /secure/gateway/document/
+host: xzt.services.ird.govt.nz
+basePath: /gateway/document/
 schemes: 
   - https
 paths: 
   /document: 
-    post: 
-      tags: 
-        - Document Service post
-      summary: Document Service post
-      description: ""
-      operationId: documentPOST
-      consumes: 
-        - 'application/json; charset=utf-8'
-      produces: 
-        - 'application/json; charset=utf-8'
-      parameters: 
-        - name: body
-          in: body
-          required: true
-          schema: 
-            $ref: '#/definitions/document_POST_Request'
-      responses: 
-        '200': 
-          description: 'HttpStatus: 200 - OK'
-          schema: 
-            $ref: '#/definitions/document_POST_Response200'
-        '400': 
-          description: 'HttpStatus: 400 - BadRequest'
-          schema: 
-            $ref: '#/definitions/document_POST_Response400'
-        '500': 
-          description: 'HttpStatus: 500 - InternalServerError'
-          schema: 
-            $ref: '#/definitions/document_POST_Response500'
-        default: 
-          description: ' '
-          schema: 
-            $ref: '#/definitions/document_POST_ResponseDefault'
     put: 
       tags: 
         - Document Service invalidate
@@ -77,6 +44,39 @@ paths:
           description: ' '
           schema: 
             $ref: '#/definitions/document_PUT_ResponseDefault'
+    post: 
+      tags: 
+        - Document Service post
+      summary: Document Service post
+      description: ""
+      operationId: documentPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/document_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/document_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/document_POST_Response400'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/document_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/document_POST_ResponseDefault'
     get: 
       tags: 
         - Document Service retrieve
@@ -143,7 +143,28 @@ paths:
           description: ' '
           schema: 
             $ref: '#/definitions/list_POST_ResponseDefault'
+  /status: 
+    get: 
+      tags: 
+        - Web Service Status
+      summary: Web Service Status
+      description: 'This web service sends a 200 HTTP response with a message body of "OK".'
+      operationId: statusGET
+      parameters: []
+      responses: 
+        default: 
+          description: ' '
 definitions: 
+  document_PUT_Request: 
+    type: object
+    required: 
+      - Reason
+    properties: 
+      Reason: 
+        type: string
+        description: '<p>The reason for marking a document as invalid</p>'
+        maxLength: 255
+        minLength: 1
   document_POST_Request: 
     type: object
     required: 
@@ -186,16 +207,6 @@ definitions:
         type: string
         description: '<p>The byte array of a file as a base 64 encoded string</p>'
         minLength: 1
-  document_PUT_Request: 
-    type: object
-    required: 
-      - Reason
-    properties: 
-      Reason: 
-        type: string
-        description: '<p>The reason for marking a document as invalid</p>'
-        maxLength: 255
-        minLength: 1
   list_POST_Request: 
     type: object
     required: 
@@ -223,6 +234,113 @@ definitions:
         type: string
         format: 'date-time'
         description: '<p>The latest date time for which documents should be retrieved. This is an ISO8601 formatted datetime. Example: 2020-02-02T08:06:26</p>'
+  document_PUT_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC301</td><td>A document cannot be found for that document ID.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC301
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_PUT_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_PUT_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC301</td><td>A document cannot be found for that document ID.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC301
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
   document_POST_Response200: 
     type: object
     required: 
@@ -333,113 +451,6 @@ definitions:
             type: 
               type: string
               description: Type Of validation code returned
-              enum: 
-                - result
-                - security
-                - server
-                - validation
-            message: 
-              type: string
-              description: Error Message
-  document_PUT_Response400: 
-    type: object
-    required: 
-      - errors
-    properties: 
-      errors: 
-        type: array
-        description: Validation array
-        items: 
-          type: object
-          description: Errors Object
-          required: 
-            - code
-            - type
-            - message
-          properties: 
-            code: 
-              type: string
-              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC301</td><td>A document cannot be found for that document ID.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
-              maxLength: 6
-              enum: 
-                - DOC301
-                - EV1020
-                - EV1021
-                - EV1022
-                - EV1100
-            type: 
-              type: string
-              description: Type of validation code returned
-              enum: 
-                - result
-                - security
-                - server
-                - validation
-            message: 
-              type: string
-              description: Error Message
-  document_PUT_Response500: 
-    type: object
-    required: 
-      - errors
-    properties: 
-      errors: 
-        type: array
-        description: Validation array
-        items: 
-          type: object
-          description: Errors Object
-          required: 
-            - code
-            - type
-            - message
-          properties: 
-            code: 
-              type: string
-              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
-              maxLength: 6
-              enum: 
-                - EU6001
-            type: 
-              type: string
-              description: Type of validation code returned
-              enum: 
-                - result
-                - security
-                - server
-                - validation
-            message: 
-              type: string
-              description: Error Message
-  document_PUT_ResponseDefault: 
-    type: object
-    required: 
-      - errors
-    properties: 
-      errors: 
-        type: array
-        description: Validation array
-        items: 
-          type: object
-          description: Errors Object
-          required: 
-            - code
-            - type
-            - message
-          properties: 
-            code: 
-              type: string
-              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC301</td><td>A document cannot be found for that document ID.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
-              maxLength: 6
-              enum: 
-                - DOC301
-                - EV1020
-                - EV1021
-                - EV1022
-                - EV1100
-            type: 
-              type: string
-              description: Type of validation code returned
               enum: 
                 - result
                 - security
@@ -638,7 +649,7 @@ definitions:
               minLength: 1
             AccountType: 
               type: string
-              description: '<p>The type of account associated to this document, if relevant</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AIL</td><td>Approved issuer levy</td></tr><tr><td>AIP</td><td>AIP</td></tr><tr><td>CFM</td><td>Complying Fund Member Account</td></tr><tr><td>CPR</td><td>Receiving carer</td></tr><tr><td>CRS</td><td>CRS</td></tr><tr><td>DSB</td><td>Client refunds</td></tr><tr><td>DWT</td><td>Dividend withholding tax</td></tr><tr><td>EMP</td><td>Payroll</td></tr><tr><td>EQU</td><td>Income Equalisation</td></tr><tr><td>ERA</td><td>Environmental Restoration</td></tr><tr><td>FAM</td><td>Working for Families</td></tr><tr><td>FAT</td><td>FATCA</td></tr><tr><td>FBT</td><td>FBT</td></tr><tr><td>GDA</td><td>General Disbursement Account</td></tr><tr><td>GMD</td><td>Gaming machine duty</td></tr><tr><td>GSD</td><td>GST satisfaction of debt</td></tr><tr><td>GST</td><td>GST</td></tr><tr><td>ICL</td><td>International Collection</td></tr><tr><td>INC</td><td>Income tax</td></tr><tr><td>IPE</td><td>Withholding Disbursements Account</td></tr><tr><td>IPS</td><td>RWT on interest</td></tr><tr><td>ISA</td><td>Interim Suspense Account</td></tr><tr><td>KSF</td><td>KiwiSaver scheme</td></tr><tr><td>KSS</td><td>KiwiSaver Member</td></tr><tr><td>LGL</td><td>Legal costs</td></tr><tr><td>MPO</td><td>Multi payment option</td></tr><tr><td>NCP</td><td>Liable parent</td></tr><tr><td>NRT</td><td>Non-resident withholding tax</td></tr><tr><td>PIE</td><td>Portfolio investment entity</td></tr><tr><td>PPL</td><td>Paid Parental Leave</td></tr><tr><td>PRS</td><td>Payroll subsidy</td></tr><tr><td>RDI</td><td>R&D Tax Incentive</td></tr><tr><td>REB</td><td>Donation tax credit</td></tr><tr><td>RLT</td><td>Residential land withholding tax</td></tr><tr><td>RUL</td><td>Rulings and determinations</td></tr><tr><td>RWT</td><td>Resident withholding tax</td></tr><tr><td>SLS</td><td>Student loan</td></tr><tr><td>TPA</td><td>Tax Pooling Account</td></tr></tbody></table>'
+              description: '<p>The type of account associated to this document, if relevant</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AIL</td><td>Approved issuer levy</td></tr><tr><td>AIP</td><td>AIP</td></tr><tr><td>CFM</td><td>Complying Fund Member Account</td></tr><tr><td>CPR</td><td>Receiving carer</td></tr><tr><td>CRS</td><td>CRS</td></tr><tr><td>DSB</td><td>Client refunds</td></tr><tr><td>DWT</td><td>Dividend withholding tax</td></tr><tr><td>EMP</td><td>Payroll</td></tr><tr><td>EQU</td><td>Income Equalisation</td></tr><tr><td>ERA</td><td>Environmental Restoration</td></tr><tr><td>FAM</td><td>Working for Families</td></tr><tr><td>FAT</td><td>FATCA</td></tr><tr><td>FBT</td><td>FBT</td></tr><tr><td>GDA</td><td>General Disbursement Account</td></tr><tr><td>GMD</td><td>Gaming machine duty</td></tr><tr><td>GSD</td><td>GST satisfaction of debt</td></tr><tr><td>GST</td><td>GST</td></tr><tr><td>ICL</td><td>International Collection</td></tr><tr><td>INC</td><td>Income tax</td></tr><tr><td>IPE</td><td>Withholding Disbursements Account</td></tr><tr><td>IPS</td><td>RWT on interest</td></tr><tr><td>ISA</td><td>Interim Suspense Account</td></tr><tr><td>KSF</td><td>KiwiSaver scheme</td></tr><tr><td>KSS</td><td>KiwiSaver Member</td></tr><tr><td>LGL</td><td>Legal costs</td></tr><tr><td>MPO</td><td>Multi payment option</td></tr><tr><td>NCP</td><td>Liable parent</td></tr><tr><td>NRT</td><td>Non-resident withholding tax</td></tr><tr><td>PIE</td><td>Portfolio investment entity</td></tr><tr><td>PPL</td><td>Paid Parental Leave</td></tr><tr><td>PRS</td><td>Payroll subsidy</td></tr><tr><td>RDI</td><td>R&D Tax Incentive</td></tr><tr><td>REB</td><td>Donation tax credit</td></tr><tr><td>RLT</td><td>Residential land withholding tax</td></tr><tr><td>RUL</td><td>Rulings and determinations</td></tr><tr><td>RWT</td><td>Resident withholding tax</td></tr><tr><td>SLS</td><td>Student loan</td></tr><tr><td>SPC</td><td>Special Payment</td></tr><tr><td>TPA</td><td>Tax Pooling Account</td></tr></tbody></table>'
               maxLength: 3
               enum: 
                 - AIL
@@ -678,6 +689,7 @@ definitions:
                 - RUL
                 - RWT
                 - SLS
+                - SPC
                 - TPA
                 - ""
             AccountID: 
