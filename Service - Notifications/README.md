@@ -52,6 +52,8 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 * Service: [Identity and access](https://github.com/InlandRevenue/Gateway_Services-Access/tree/master/Identity%20and%20Access) - view how to integrate, OAuth requests and responses message samples and build pack
 * Service: [Document](../Service%20-%20Document/)
 
+---
+
 ## Message samples
 
 * Sample JSON payload messages
