@@ -2,41 +2,75 @@
 ![Software Dev](../Images/SoftwareDev.png)
 
 # Notifications Service 
-
-The Notifications Service enables actionable event notifications to be retrieved by external software platforms.  
-
-## Key Features:
-* View and download [build packs for Notifications Service](Build%20Pack%20-%20Notifications%20v1.pdf)
-* Notifications YAML file [Notifications.yaml](Notifications.yaml)
+---
+#### Release version 1.0
 
 
-## Products using this service:
+## About the service
+---
+* The Notifications service delivers read-only notifications to software platforms, with the necessary metadata to describe an underlying event. The receiver of the notification will decide if further information and/or action is needed to respond to the notification.
+* There are 5 general types of notification:
+	* Events – notification about significant events that have occurred.
+	* Reminders – reminder of future events.
+	* Request for information – requests from us for information, typically the uploading of a document of a specific type.
+	* Errors – something that is not correct.
+	* Action required – something that needs to be done.
+* The Document service can be used to retrieve, submit or update documents associated to a notification.  
 
-* [Employment Service](https://github.com/InlandRevenue/Gateway_Services-Returns-and-Information/tree/master/Service%20-%20Payday%20Filing/Employee%20Details)
-* [Income Tax Return Service](https://github.com/InlandRevenue/Gateway_Services-Returns-and-Information/tree/master/Service%20-%20Income%20Tax)  
 
-## Supporting Services:
+## Key documentation
+---
+- YAML file
+	- View and download the [Notifications YAML](Notifications.yaml)
 
-* (Required) Service: Identity and Access - view [How to integrate, OAuth requests and responses message sample and build pack](https://github.com/InlandRevenue/Gateway_Services-Access/tree/master/Identity%20and%20Access) 
+- Build pack
+	- [Download the Notifications build pack](Build%20pack%20-%20Notifications%20v1.pdf)
+
+- Message samples
+	- [View message samples for requests and responses](#-message-samples)
 
 >**NOTE:** The included [Notifications.yaml](Notifications.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
 
+
+## Environment information
+---
+- [Mock environment information - emulated services, mindmap and test data](#-mock-environment-information)
+
+- [Test environment information - URL endpoints](#-test-environment-information)
+
+- [Production environment information - URL endpoint](#-prod-environment-information)
+
+
+## Services using this service
+---
+* [Employment Service](https://github.com/InlandRevenue/Gateway_Services-Returns-and-Information/tree/master/Service%20-%20Payday%20Filing/Employee%20Details)
+* [Income Tax Return Service](https://github.com/InlandRevenue/Gateway_Services-Returns-and-Information/blob/master/Service%20-%20Income%20Tax/IncomeTax.md)  
+
+
+## Supporting Services
+---
+- Service: Identity and access - view: [How to integrate, OAuth requests and responses message samples and build pack](https://github.com/InlandRevenue/Gateway_Services-Access/tree/master/Identity%20and%20Access)
+
+
 ## Message Samples
 ---
-* POST /List - Notification Service List
-    * [Request body with all fields](Sample%20Files/Sample_POST_List_RequestBody.json)
-    * [Request body with mandatory fields](Sample%20Files/Sample_POST_List_RequestBody_Mandatory.json)
-    * [200 Response body](Sample%20Files/Sample_POST_List_ResponseBody.json)
-    * [400 Response body](Sample%20Files/Sample_Error_ResponseBody.json)
+* Sample JSON payload messages
+	* POST /List - Notification Service List
+		* [Request body with all fields](Sample%20Files/Sample_POST_List_RequestBody.json)
+		* [Request body with mandatory fields](Sample%20Files/Sample_POST_List_RequestBody_Mandatory.json)
+		* [200 Response body](Sample%20Files/Sample_POST_List_ResponseBody.json)
+		* [400 Response body](Sample%20Files/Sample_Error_ResponseBody.json)
 
-## Mock Environment Information
+
+## Mock environment information
 ---
-### Mock Emulated Services URL
+### Mock emulated service URL
 Description | URL
 ---|---
  Landing Page | https://mock-not.ird.digitalpartner.services
  Service Endpoint | https://mock-not.ird.digitalpartner.services/secure/gateway/notification/list 
-### Mock Environment Authentication
+
+### Mock environment authentication
    * Consumers of this mock service must be authenticated.
    * Authentication is provided using one of two methods:
      1. OAuth
@@ -48,7 +82,7 @@ Description | URL
         ```
      2. JWT
         * Alternatively a self-issued JWT may be used to access the service.
-        * Please consult the [Notification service build pack](Build%20pack%20-%20Notifications.pdf) for information on the token structure.
+        * Please consult the [Notification service build pack](Build%20pack%20-%20Notifications%20v1.pdf) for information on the token structure.
         * The mock service does not validate the following JWT attributes:
             * "sub" field
             * "iss" field
@@ -57,7 +91,8 @@ Description | URL
         ```
         Authorization: {JWT}
         ```
-### Notification Mock Scenarios MindMap
+
+### Notifications mock scenarios mindmap
 
 - [View larger image](images/Notification%20Mock%20Service%20Scenarios.png)
 ![Mock Scenarios](images/Notification%20Mock%20Service%20Scenarios.png)
@@ -74,13 +109,23 @@ Description | URL
     MOCK-NOT-003 | *FromDateTime*: "2019-06-01T11:16:07" or earlier <br> *ToDateTime*: "2019-06-01T11:16:07" or later | 200 | List with some Notifications
     MOCK-NOT-005 | *QueryID*: "111111111" | 200 | Empty list of Notifications
     MOCK-NOT-006 | *QueryID*: "123345185" | 200 | Empty list of Notifications
-	
 
-## URL Endpoints.
+
+## Test environment information
 ---
-- Mock : https://mock-not.ird.digitalpartner.services/secure/gateway/notification/list
-- Testing : https://test3.services.ird.govt.nz:4046/Gateway/notifications/list
-- Pre-Production : https://test4.services.ird.govt.nz:4046/Gateway/notifications/list
-- Production : https://services.ird.govt.nz:4046/Gateway/notifications/list
+### Test environment URL
+| End point|  URL|
+|--|--|
+| Testing | https://test3.services.ird.govt.nz:4046/Gateway/notifications/list |    
+| Pre-Production | https://test4.services.ird.govt.nz:4046/Gateway/notifications/list | 
 
 >**NOTE:** These endpoints are subject to change due to environment updates in the future. 
+
+
+## Prod environment information
+---
+### Prod environment URL
+| End point|  URL|
+|--|--|
+| Production | https://services.ird.govt.nz:4046/Gateway/notifications/list |
+
