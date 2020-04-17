@@ -15,9 +15,8 @@ Use this repository to access software development kits (SDKs) for communication
 
 ## Related Gateway Services repositories
 
-* [Gateway Services – Access](https://github.com/InlandRevenue/Gateway_Services-Access)
-* [Gateway Services - Returns and Information](https://github.com/InlandRevenue/Gateway_Services-Returns-and-Information)
-* [Gateway Services – Customer and Account](https://github.com/InlandRevenue/Gateway_Services-Customer-and-Account)
-* [Gateway Services – Calculators](https://github.com/InlandRevenue/Gateway_Services-Calculators)
-* [Gateway Services – Transaction Data Services](https://github.com/InlandRevenue/Gateway_Services-Transaction-data-services)
-
+* Gateway Services - [Returns and Information](https://github.com/InlandRevenue/Gateway_Services-Returns-and-Information)
+* Gateway Services - [Customer and Accounts](https://github.com/InlandRevenue/Gateway_Services-Customer-and-Account)
+* Gateway Services - [Calculators](https://github.com/InlandRevenue/Gateway_Services-Calculators)
+* Gateway Services - [Access](https://github.com/InlandRevenue/Gateway_Services-Access)
+* Gateway Services - [Transaction Data Services](https://github.com/InlandRevenue/Gateway_Services-Transaction-data-services)

@@ -2,24 +2,25 @@
 ![Software Dev](../Images/SoftwareDev.png)
 
 # Notifications Service 
----
+
 #### Release version 1.0
 
-
 ## About the service
----
-* The Notifications service delivers read-only notifications to software platforms, with the necessary metadata to describe an underlying event. The receiver of the notification will decide if further information and/or action is needed to respond to the notification.
-* There are 5 general types of notification:
+
+The Notifications service delivers read-only notifications to software platforms, with the necessary metadata to describe an underlying event. The receiver of the notification will decide if further information and/or action is needed to respond to the notification.
+
+There are 5 general types of notification:
 	* Events – notification about significant events that have occurred.
 	* Reminders – reminder of future events.
 	* Request for information – requests from us for information, typically the uploading of a document of a specific type.
 	* Errors – something that is not correct.
 	* Action required – something that needs to be done.
-* The Document service can be used to retrieve, submit or update documents associated to a notification.  
+
+The [Document service](../Service%20-%20Document/) can be used to retrieve, submit or update documents associated to a notification.  
 
 
 ## Key documentation
----
+
 - YAML file
 	- View and download the [Notifications YAML](Notifications.yaml)
 
@@ -33,27 +34,27 @@
 
 
 ## Environment information
----
-- [Mock environment information - emulated services, mindmap and test data](#-mock-environment-information)
 
-- [Test environment information - URL endpoints](#-test-environment-information)
+* [Mock environment information - emulated services, mindmap and test data](#-mock-environment-information)
 
-- [Production environment information - URL endpoint](#-prod-environment-information)
+* [Test environment information - URL endpoints](#-test-environment-information)
+
+* [Production environment information - URL endpoint](#-prod-environment-information)
 
 
 ## Services using this service
----
+
 * [Employment Service](https://github.com/InlandRevenue/Gateway_Services-Returns-and-Information/tree/master/Service%20-%20Payday%20Filing/Employee%20Details)
 * [Income Tax Return Service](https://github.com/InlandRevenue/Gateway_Services-Returns-and-Information/blob/master/Service%20-%20Income%20Tax/IncomeTax.md)  
 
+## Supporting services
 
-## Supporting Services
+* Service: [Identity and access](https://github.com/InlandRevenue/Gateway_Services-Access/tree/master/Identity%20and%20Access) - view how to integrate, OAuth requests and responses message samples and build pack
+* Service: [Document](../Service%20-%20Document/)
+
 ---
-- Service: Identity and access - view: [How to integrate, OAuth requests and responses message samples and build pack](https://github.com/InlandRevenue/Gateway_Services-Access/tree/master/Identity%20and%20Access)
+## Message samples
 
-
-## Message Samples
----
 * Sample JSON payload messages
 	* POST /List - Notification Service List
 		* [Request body with all fields](Sample%20Files/Sample_POST_List_RequestBody.json)
@@ -63,7 +64,7 @@
 
 
 ## Mock environment information
----
+
 ### Mock emulated service URL
 Description | URL
 ---|---
@@ -92,7 +93,7 @@ Description | URL
         Authorization: {JWT}
         ```
 
-### Notifications mock scenarios mindmap
+### Notifications mock scenarios mind map
 
 - [View larger image](images/Notification%20Mock%20Service%20Scenarios.png)
 ![Mock Scenarios](images/Notification%20Mock%20Service%20Scenarios.png)
@@ -110,9 +111,9 @@ Description | URL
     MOCK-NOT-005 | *QueryID*: "111111111" | 200 | Empty list of Notifications
     MOCK-NOT-006 | *QueryID*: "123345185" | 200 | Empty list of Notifications
 
-
-## Test environment information
 ---
+## Test environment information
+
 ### Test environment URL
 | End point|  URL|
 |--|--|
@@ -121,11 +122,10 @@ Description | URL
 
 >**NOTE:** These endpoints are subject to change due to environment updates in the future. 
 
-
-## Prod environment information
 ---
+## Prod environment information
+
 ### Prod environment URL
 | End point|  URL|
 |--|--|
 | Production | https://services.ird.govt.nz:4046/Gateway/notifications/list |
-
