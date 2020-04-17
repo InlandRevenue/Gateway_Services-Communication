@@ -53,7 +53,6 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 * Service: [Document](../Service%20-%20Document/)
 
 ---
-
 ## Message samples
 
 * Sample JSON payload messages
@@ -112,7 +111,7 @@ Description | URL
     MOCK-NOT-005 | *QueryID*: "111111111" | 200 | Empty list of Notifications
     MOCK-NOT-006 | *QueryID*: "123345185" | 200 | Empty list of Notifications
 
-
+---
 ## Test environment information
 
 ### Test environment URL
@@ -123,7 +122,7 @@ Description | URL
 
 >**NOTE:** These endpoints are subject to change due to environment updates in the future. 
 
-
+---
 ## Prod environment information
 
 ### Prod environment URL
