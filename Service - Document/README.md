@@ -22,18 +22,18 @@ The Document Service enables documents to be retrieved by external software plat
 	- [Download the Document service build pack](Build%20pack%20-%20Document%20Service.pdf)
 
 - Message samples
-	- [View message samples for requests and responses](#-message-samples)
+	- [View message samples for requests and responses](#message-samples)
 
 >**NOTE:** The included [Document.yaml](Document.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
 
 
 ## Environment information
 
-- [Mock environment information - emulated services, mindmap and test data](#-mock-environment-information)
+- [Mock environment information - emulated services, mindmap and test data](#mock-environment-information)
 
-- [Test environment information - URL endpoints](#-test-environment-information)
+- [Test environment information - URL endpoints](#test-environment-information)
 
-- [Production environment information - URL endpoint](#-prod-environment-information)
+- [Production environment information - URL endpoint](#prod-environment-information)
 
 
 ## Supporting services
