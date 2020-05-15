@@ -119,8 +119,8 @@ Description | URL
 ### Test environment URL
 | End point|  URL|
 |--|--|
-| Testing | https://test3.services.ird.govt.nz:4046/Gateway/notifications/list |    
-| Pre-Production | https://test4.services.ird.govt.nz:4046/Gateway/notifications/list | 
+| Testing | https://test5.services.ird.govt.nz:4046/Gateway/notifications/list |    
+| Pre-Production | https://test6.services.ird.govt.nz:4046/Gateway/notifications/list | 
 
 >**NOTE:** These endpoints are subject to change due to environment updates in the future. 
 
