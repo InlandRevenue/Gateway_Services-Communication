@@ -3,7 +3,7 @@
 
 # Notifications Service 
 
-#### Release version 1.0
+#### Release version 1.0 19/05/2020
 
 ## About the service
 
@@ -22,7 +22,7 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 ## Key documentation
 
 - YAML file
-	- View and download the [Notifications YAML](Notifications.yaml)
+	- View and download the [Notification 2020-05-19.yaml](Notification%202020-05-19.yaml)
 
 - Build pack
 	- [Download the Notifications build pack](Build%20pack%20-%20Notifications%20v1.pdf)
@@ -30,7 +30,7 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 - Message samples
 	- [View message samples for requests and responses](#message-samples)
 
->**NOTE:** The included [Notifications.yaml](Notifications.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
+>**NOTE:** The included [Notification 2020-05-19.yaml](Notification%202020-05-19.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
 
 
 ## Environment information
