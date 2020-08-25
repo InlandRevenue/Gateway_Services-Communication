@@ -10,11 +10,11 @@
 The Notifications service delivers read-only notifications to software platforms, with the necessary metadata to describe an underlying event. The receiver of the notification will decide if further information and/or action is needed to respond to the notification.
 
 There are 5 general types of notification:
-	* Events – notification about significant events that have occurred.
-	* Reminders – reminder of future events.
-	* Request for information – requests from us for information, typically the uploading of a document of a specific type.
-	* Errors – something that is not correct.
-	* Action required – something that needs to be done.
+	* Events - notification about significant events that have occurred.
+	* Reminders - reminder of future events.
+	* Request for information - requests from us for information, typically the uploading of a document of a specific type.
+	* Errors - something that is not correct.
+	* Action required - something that needs to be done.
 
 The [Document service](../Service%20-%20Document/) can be used to retrieve, submit or update documents associated to a notification.  
 
@@ -116,11 +116,11 @@ Description | URL
 <a name="test-environment-information"></a>
 ## Test environment information
 
-### Test environment URL
-| End point|  URL|
-|--|--|
-| Testing | https://test5.services.ird.govt.nz:4046/Gateway/notifications/list |    
-| Pre-Production | https://test6.services.ird.govt.nz:4046/Gateway/notifications/list | 
+#### Testing URL - `https://test5.services.ird.govt.nz:4046/gateway/notification/{Service}`
+| Service | HTTP request types | Description | 
+| :--: | :--: | -- |
+| list | `POST` | This web service is used to retrieve notifications for a given customer | 
+| status | `GET` | This web service sends a 200 HTTP response with a message body of `OK`. This is preferred over service "ping" functionality as this should validate the service and credential configuration | 
 
 >**NOTE:** These endpoints are subject to change due to environment updates in the future. 
 
@@ -128,7 +128,9 @@ Description | URL
 <a name="prod-environment-information"></a>
 ## Prod environment information
 
-### Prod environment URL
-| End point|  URL|
-|--|--|
-| Production | https://services.ird.govt.nz:4046/Gateway/notifications/list |
+
+#### Production URL - `https://services.ird.govt.nz:4046/gateway/notification/{Service}`
+| Service | HTTP request types | Description | 
+| :--: | :--: | -- |
+| list | `POST` | This web service is used to retrieve notifications for a given customer | 
+| status | `GET` | This web service sends a 200 HTTP response with a message body of "OK". This is preferred over service "ping" functionality as this should validate the service and credential configuration | 
