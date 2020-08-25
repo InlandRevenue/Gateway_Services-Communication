@@ -72,6 +72,8 @@ Description | URL
  Landing Page | https://mock-not.ird.digitalpartner.services
  Service Endpoint | https://mock-not.ird.digitalpartner.services/secure/gateway/notification/list 
 
+ > *The `status` service might not be available in the mock environment 
+
 ### Mock environment authentication
    * Consumers of this mock service must be authenticated.
    * Authentication is provided using one of two methods:
@@ -122,7 +124,9 @@ Description | URL
 | list | `POST` | This web service is used to retrieve notifications for a given customer | 
 | status | `GET` | This web service sends a 200 HTTP response with a message body of `OK`. This is preferred over service "ping" functionality as this should validate the service and credential configuration | 
 
->**NOTE:** These endpoints are subject to change due to environment updates in the future. 
+>**NOTE:** These endpoints are subject to change due to environment updates in the future.
+
+
 
 ---
 <a name="prod-environment-information"></a>
@@ -133,4 +137,4 @@ Description | URL
 | Service | HTTP request types | Description | 
 | :--: | :--: | -- |
 | list | `POST` | This web service is used to retrieve notifications for a given customer | 
-| status | `GET` | This web service sends a 200 HTTP response with a message body of "OK". This is preferred over service "ping" functionality as this should validate the service and credential configuration | 
+| status* | `GET` | This web service sends a 200 HTTP response with a message body of "OK". This is preferred over service "ping" functionality as this should validate the service and credential configuration | 
