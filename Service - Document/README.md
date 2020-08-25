@@ -68,12 +68,20 @@ The Document Service enables documents to be retrieved by external software plat
 ## Mock environment information
 
 ### Mock emulated services URL
+
 Description | URL
 ---|---
  Landing Page | https://mock-doc.ird.digitalpartner.services
- Service Path | https://mock-doc.ird.digitalpartner.services/secure/gateway/document 
- Document Resource | https://mock-doc.ird.digitalpartner.services/secure/gateway/document/document 
- List Resource | https://mock-doc.ird.digitalpartner.services/secure/gateway/document/list 
+
+#### Mock URL - `https://mock-doc.ird.digitalpartner.services/secure/gateway/document/{Service}`
+| Service | HTTP request types | Description | 
+| :--: | :--: | -- |
+| document  | `GET` | This web service will get the document for a given document ID | 
+| document | `POST` | This web service will allow a document to be submitted through the document service. | 
+| document | `PUT` | This web service will allow a document to be marked as invalid. | 
+| list | `POST` | This web service will list out the available documents for the input parameters.|
+
+>**NOTE:** The `status` service might not be available in the mock environment.
 
 ### Mock environment authentication
    * Consumers of this mock service must be authenticated.
