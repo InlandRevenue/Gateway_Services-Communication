@@ -72,7 +72,7 @@ Description | URL
  Landing Page | https://mock-not.ird.digitalpartner.services
  Service Endpoint | https://mock-not.ird.digitalpartner.services/secure/gateway/notification/list 
 
- > *The `status` service might not be available in the mock environment 
+>**NOTE:** The `status` service might not be available in the mock environment.
 
 ### Mock environment authentication
    * Consumers of this mock service must be authenticated.
