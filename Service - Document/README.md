@@ -123,11 +123,15 @@ Description | URL
 <a name="test-environment-information"></a>
 ## Test environment information
 
-### Test environment URL
-| End point|  URL|
-|--|--|
-| Testing | https://test5.services.ird.govt.nz:4046/Gateway/documents/v1/|    
-| Pre-Production | https://test6.services.ird.govt.nz:4046/Gateway/documents/v1/| 
+#### Testing URL - `https://test5.services.ird.govt.nz:4046/gateway/document/{Service}`
+| Service | HTTP request types | Description | 
+| :--: | :--: | -- |
+| document  | `GET` | This web service will get the document for a given document ID | 
+| document | `POST` | This web service will allow a document to be submitted through the document service. | 
+| document | `PUT` | This web service will allow a document to be marked as invalid. | 
+| list | `POST` | This web service will list out the available documents for the input parameters.|
+| status | `GET` | This web service sends a 200 HTTP response with a message body of `OK`. This is preferred over service "ping" functionality as this should validate the service and credential configuration.|
+
 
 >**NOTE:** These endpoints are subject to change due to environment updates in the future. 
 
@@ -135,7 +139,11 @@ Description | URL
 <a name="prod-environment-information"></a>
 ## Prod environment information
 
-### Prod environment URL
-| End point|  URL|
-|--|--|
-| Production | https://services.ird.govt.nz:4046/Gateway/documents/v1/ |
+#### Production URL - `https://services.ird.govt.nz:4046/gateway/document/{Service}`
+| Service | HTTP request types | Description | 
+| :--: | :--: | -- |
+| document  | `GET` | This web service will get the document for a given document ID | 
+| document | `POST` | This web service will allow a document to be submitted through the document service. | 
+| document | `PUT` | This web service will allow a document to be marked as invalid. | 
+| list | `POST` | This web service will list out the available documents for the input parameters.|
+| status | `GET` | This web service sends a 200 HTTP response with a message body of `OK`. This is preferred over service "ping" functionality as this should validate the service and credential configuration.
