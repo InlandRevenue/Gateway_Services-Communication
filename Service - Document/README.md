@@ -143,6 +143,10 @@ Description | URL
 
 >**NOTE:** These endpoints are subject to change due to environment updates in the future. 
 
+### Test scenarios report template
+
+- [Download Test Scenarios report template](Document%20Service%20-%20Test%20Scenarios%20Report%20Template.docx)
+
 ---
 <a name="prod-environment-information"></a>
 ## Prod environment information
