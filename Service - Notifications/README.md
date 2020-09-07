@@ -113,7 +113,7 @@ Description | URL
     MOCK-NOT-003 | *FromDateTime*: "2019-06-01T11:16:07" or earlier <br> *ToDateTime*: "2019-06-01T11:16:07" or later | 200 | List with some Notifications
     MOCK-NOT-005 | *QueryID*: "111111111" | 200 | Empty list of Notifications
     MOCK-NOT-006 | *QueryID*: "123345185" | 200 | Empty list of Notifications
-
+	
 ---
 <a name="test-environment-information"></a>
 ## Test environment information
@@ -126,7 +126,9 @@ Description | URL
 
 >**NOTE:** These endpoints are subject to change due to environment updates in the future.
 
+### Test scenarios report template
 
+- [Download Test Scenarios report template](Notifications%20Service%20-%20Test%20Scenarios%20Report%20Template.docx)
 
 ---
 <a name="prod-environment-information"></a>
