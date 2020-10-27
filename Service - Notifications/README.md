@@ -22,7 +22,7 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 ## Key documentation
 
 - YAML file
-	- View and download the [Notification 2020-05-19.yaml](Notification%202020-05-19.yaml)
+	- View and download the [Notifications 2020-10-27.yaml](Notifications%202020-10-27.yaml)
 
 - Build pack
 	- [Download the Notifications build pack](Build%20pack%20-%20Notifications%20v1.pdf)
