@@ -30,7 +30,7 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 - Message samples
 	- [View message samples for requests and responses](#message-samples)
 
->**NOTE:** The included [Notification 2020-05-19.yaml](Notification%202020-05-19.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
+>**NOTE:** The included [Notifications 2020-10-27.yaml](Notifications%202020-10-27.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
 
 
 ## Environment information
