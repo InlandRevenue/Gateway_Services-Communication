@@ -16,7 +16,7 @@ The Document Service enables documents to be retrieved by external software plat
 ## Key documentation
 
 - YAML file
-	- View and download [Document service YAML file](Document%202020-05-19.yaml)
+	- View and download [Document service YAML file](Document.yaml)
 
 - Build pack
 	- [Download the Document service build pack](Build%20pack%20-%20Document%20Service.pdf)
@@ -24,7 +24,7 @@ The Document Service enables documents to be retrieved by external software plat
 - Message samples
 	- [View message samples for requests and responses](#message-samples)
 
->**NOTE:** The included [Document%202020-05-19.yaml](Document%202020-05-19.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
+>**NOTE:** The included [Document.yaml](Document.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
 
 
 ## Environment information
@@ -126,7 +126,6 @@ Description | URL
     MOCK-DOC-010 | *DocumentID*: 5413355273 | 200 |
     MOCK-DOC-011 | *DocumentID*: {numeric value e.g. 123} | 400 | DOC301 - A document cannot be found for that document ID.
     MOCK-DOC-018 | *ExtIDType*: {value other than "RTNSUB"} | 400 | EV1100 - Invalid input parameters. Please check documentation
-	MOCK-DOC-027 | IRDNumber: 139418786 | 200 | Document information
 
 ---
 <a name="test-environment-information"></a>
