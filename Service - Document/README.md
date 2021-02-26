@@ -16,16 +16,13 @@ The Document Service enables documents to be retrieved by external software plat
 ## Key documentation
 
 - YAML file
-	- View and download [Document service YAML file](Document%202020-05-19.yaml)
+	- View and download [Document service YAML file](Document%202020-11-04.yaml)
 
 - Build pack
 	- [Download the Document service build pack](Build%20pack%20-%20Document%20Service.pdf)
 
 - Message samples
 	- [View message samples for requests and responses](#message-samples)
-
->**NOTE:** The included [Document%202020-05-19.yaml](Document%202020-05-19.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
-
 
 ## Environment information
 
