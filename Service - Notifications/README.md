@@ -22,7 +22,7 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 ## Key documentation
 
 - YAML file
-	- View and download the [Notifications 2020-10-27.yaml](Notifications%202020-10-27.yaml)
+	- View and download the [Notifications 2021-02-26.yaml](Notifications%202021-02-26.yaml)
 
 - Build pack
 	- [Download the Notifications build pack](Build%20pack%20-%20Notifications%20v1.pdf)
@@ -106,13 +106,25 @@ Description | URL
 * This table shows which scenarios (as per their numbers in the mindmap) require specific data to trigger the expected responses.
 * Text in italics represents the name of the JSON node in the request.
 
-  Scenario ID | Data | Http status | Response 
-    --- | --- | --- | ---
-    MOCK-NOT-001 | *FromDateTime*: "2019-10-01T14:25:31" or earlier <br> *ToDateTime*: "2019-10-01T14:25:31" or later | 200 | List with some Notifications
-    MOCK-NOT-002 | *FromDateTime*: "2019-10-01T14:25:32" or earlier <br> *ToDateTime*: "2019-10-01T14:25:32" or later | 200 | List with some Notifications
-    MOCK-NOT-003 | *FromDateTime*: "2019-06-01T11:16:07" or earlier <br> *ToDateTime*: "2019-06-01T11:16:07" or later | 200 | List with some Notifications
-    MOCK-NOT-005 | *QueryID*: "111111111" | 200 | Empty list of Notifications
-    MOCK-NOT-006 | *QueryID*: "123345185" | 200 | Empty list of Notifications
+| Scenario ID    | Data                                            | Http status | Response                                       |
+|----------------|-------------------------------------------------|-------------|------------------------------------------------|
+| [MOCK-NOT-001] | QueryIDType": "IRD", <br/> QueryID": "139026551", <br/> FromDateTime": "2018-05-10T01:02:06" or earlier <br/> ToDateTime: "2019-10-01T14:25:31" or later                          | 200         | List with some Notifications                   |
+| [MOCK-NOT-002] | QueryIDType": "IRD", <br/> QueryID": "139026659", <br/> FromDateTime": "2018-05-10T01:02:06" or earlier <br/> ToDateTime: "2019-10-01T14:25:31" or later                           | 200         | List with some Notifications                   |
+| [MOCK-NOT-003] | QueryIDType": "IRD", <br/> QueryID": "139026551", <br/> FromDateTime": "2018-05-10T01:02:06" or earlier <br/> ToDateTime: "2019-10-01T14:25:31" or later                         | 200         | List with some Notifications                   |
+| [MOCK-NOT-004] | FromDateTime": "2018-05-10T01:02:06" or earlier | 200         | List with some Notifications                   |
+| [MOCK-NOT-007] | QueryIDType": "CST", <br/> QueryID": "1512290100", <br/> FromDateTime": "2018-05-10T01:02:06" or earlier <br/> ToDateTime: "2019-10-01T14:25:31" or later                             | 200         | List with some Notifications                   |
+| [MOCK-NOT-008] | QueryID: "111111111"                            | 200         | Empty list of Notifications                    |
+| [MOCK-NOT-009] | QueryID: "123345185"                            | 200         | Empty list of Notifications                    |
+| [MOCK-NOT-010] | FromDateTime": "2022-05-10T01:02:06" or later   | 400         | KS0133 Error                                   |
+| [MOCK-NOT-011] | ToDateTime: "2022-10-01T14:25:31" or later      | 400         | KS0133 Error                                   |
+| [MOCK-NOT-012] | FromDateTime": "2019-05-10T01:02:06", <br/> ToDateTime: "2018-10-01T14:25:31"           | 400         | EV2302 Error                                   |
+| [MOCK-NOT-013] | FromDateTime": "2019-02-2501:02:00"             | 400         | EV1100 Error                                   |
+| [MOCK-NOT-019] | QueryIDType": "IRD",  <br/> QueryID": "139026551", <br/>  FromDateTime": "2018-05-10T01:02:06" <br/>                          | 200         | List containing Employer related Notifications |
+| [MOCK-NOT-020] | QueryIDType": "LSTID", <br/> QueryID": "139023668", <br/> FromDateTime": "2018-05-10T01:02:06"                          | 200         | List with some Notifications                   |
+| [MOCK-NOT-021] | QueryIDType": "CLTLID", <br/> QueryID": "1080017", <br/> FromDateTime": "2018-05-10T01:02:06"                         | 200         | List with some Notifications                   |
+| [MOCK-NOT-022] | QueryIDType": "IRD" <br/> QueryID": "139026551",<br/>FromDateTime": "2018-05-10T01:02:06"                           | 200         | List containing Employer related Notifications |
+| [MOCK-NOT-023] | QueryIDType": "IRD" <br/> QueryID": "139112583",<br/>FromDateTime": "2018-05-10T01:02:06"                             | 200         | List containing PIR related Notifications      |
+
 	
 ---
 <a name="test-environment-information"></a>
