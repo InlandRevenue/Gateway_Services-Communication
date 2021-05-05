@@ -1,0 +1,816 @@
+swagger: '2.0'
+info: 
+  title: Document
+  description: A REST API service which allows documents to be submitted to and received from Inland Revenue as well as viewing previously submitted documents and removing documents submitted by mistake.
+  version: ""
+host: 'eservices-test-gateway.npnsp.ird.govt.nz'
+basePath: /secure/gateway/document/
+schemes: 
+  - https
+paths: 
+  /document: 
+    post: 
+      tags: 
+        - Document Service post
+      summary: Document Service post
+      description: ""
+      operationId: documentPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/document_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/document_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/document_POST_Response400'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/document_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/document_POST_ResponseDefault'
+    put: 
+      tags: 
+        - Document Service invalidate
+      summary: Document Service invalidate
+      description: ""
+      operationId: documentPUT
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: DocumentID
+          in: query
+          description: '<p>The unique identifier of a document that can be retrieved through the document service.</p>'
+          required: true
+          type: number
+          format: int64
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/document_PUT_Request'
+      responses: 
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/document_PUT_Response400'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/document_PUT_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/document_PUT_ResponseDefault'
+    get: 
+      tags: 
+        - Document Service retrieve
+      summary: Document Service retrieve
+      description: ""
+      operationId: documentGET
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: DocumentID
+          in: query
+          description: '<p>The unique identifier of a document that can be retrieved through the document service.</p>'
+          required: true
+          type: number
+          format: int64
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/document_GET_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/document_GET_Response400'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/document_GET_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/document_GET_ResponseDefault'
+  /list: 
+    post: 
+      tags: 
+        - Document Service List
+      summary: Document Service List
+      description: ""
+      operationId: listPOST
+      consumes: 
+        - 'application/json; charset=utf-8'
+      produces: 
+        - 'application/json; charset=utf-8'
+      parameters: 
+        - name: body
+          in: body
+          required: true
+          schema: 
+            $ref: '#/definitions/list_POST_Request'
+      responses: 
+        '200': 
+          description: 'HttpStatus: 200 - OK'
+          schema: 
+            $ref: '#/definitions/list_POST_Response200'
+        '400': 
+          description: 'HttpStatus: 400 - BadRequest'
+          schema: 
+            $ref: '#/definitions/list_POST_Response400'
+        '500': 
+          description: 'HttpStatus: 500 - InternalServerError'
+          schema: 
+            $ref: '#/definitions/list_POST_Response500'
+        default: 
+          description: ' '
+          schema: 
+            $ref: '#/definitions/list_POST_ResponseDefault'
+definitions: 
+  document_POST_Request: 
+    type: object
+    required: 
+      - Description
+      - FileName
+      - Document
+    properties: 
+      DocumentLocationID: 
+        type: number
+        format: int64
+        description: '<p>An identifier used to route a document submitted through the document service into the correct area</p>'
+      ExtID: 
+        type: number
+        format: int64
+        description: '<p>The external ID identifying an area where documents can be submitted and retrieved</p>'
+      ExtIDType: 
+        type: string
+        description: '<p>The external ID type identifying the area where documents can be submitted and retrieved</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>RTNSUB</td><td>The submission key of a previously submitted return.</td></tr></tbody></table>'
+        maxLength: 30
+        enum: 
+          - RTNSUB
+      DocumentCategory: 
+        type: string
+        description: '<p>The category of the document submitted through the document service</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>GENATC</td><td>Generic attachment</td></tr><tr><td>RTNFIN</td><td>Financial statements for a return</td></tr></tbody></table>'
+        maxLength: 15
+        enum: 
+          - GENATC
+          - RTNFIN
+      Description: 
+        type: string
+        description: '<p>The description of the document. For items submitted through the document service, this will be the description provided when the document was submitted. For mail items, this will be the title of the mail item.</p>'
+        maxLength: 255
+        minLength: 1
+      FileName: 
+        type: string
+        description: '<p>The file name of the file submitted through the document service</p>'
+        maxLength: 255
+        minLength: 1
+      Document: 
+        type: string
+        description: '<p>The byte array of a file as a base 64 encoded string</p>'
+        minLength: 1
+  document_PUT_Request: 
+    type: object
+    required: 
+      - Reason
+    properties: 
+      Reason: 
+        type: string
+        description: '<p>The reason for marking a document as invalid</p>'
+        maxLength: 255
+        minLength: 1
+  list_POST_Request: 
+    type: object
+    required: 
+      - FromDateTime
+    properties: 
+      IRDNumber: 
+        type: string
+        description: '<p>The IRD number of the customer for whom documents should be retrieved. <br>Numeric only. Any letters or special characters will cause the check digit validation to fail. <br>Must comply with Modulus 11 check</p>'
+        maxLength: 9
+      ExtID: 
+        type: number
+        format: int64
+        description: '<p>The external ID identifying an area where documents can be submitted and retrieved</p>'
+      ExtIDType: 
+        type: string
+        description: '<p>The external ID type identifying the area where documents can be submitted and retrieved</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>RTNSUB</td><td>The submission key of a previously submitted return.</td></tr></tbody></table>'
+        maxLength: 30
+        enum: 
+          - RTNSUB
+      FromDateTime: 
+        type: string
+        format: 'date-time'
+        description: '<p>The earliest date time for which documents should be retrieved. This is an ISO8601 formatted datetime. Example: 2020-01-01T08:06:26</p>'
+      ToDateTime: 
+        type: string
+        format: 'date-time'
+        description: '<p>The latest date time for which documents should be retrieved. This is an ISO8601 formatted datetime. Example: 2020-02-02T08:06:26</p>'
+  document_POST_Response200: 
+    type: object
+    required: 
+      - DocumentID
+    properties: 
+      DocumentID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a document that can be retrieved through the document service.</p>'
+  document_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code For validation, security, Or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC402</td><td>If ExtID is provided, ExtIDType must be provided as well.</td></tr><tr><td>DOC403</td><td>One, and only one, of DocumentLocationID or ExtID should be present.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC402
+                - DOC403
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+            type: 
+              type: string
+              description: Type Of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code For validation, security, Or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type Of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code For validation, security, Or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC402</td><td>If ExtID is provided, ExtIDType must be provided as well.</td></tr><tr><td>DOC403</td><td>One, and only one, of DocumentLocationID or ExtID should be present.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC402
+                - DOC403
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+            type: 
+              type: string
+              description: Type Of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_PUT_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC301</td><td>A document cannot be found for that document ID.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC301
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_PUT_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_PUT_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC301</td><td>A document cannot be found for that document ID.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC301
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_GET_Response200: 
+    type: object
+    required: 
+      - DocumentID
+      - DateTimeCreated
+      - Description
+      - Document
+    properties: 
+      DocumentID: 
+        type: number
+        format: int64
+        description: '<p>The unique identifier of a document that can be retrieved through the document service.</p>'
+      DateTimeCreated: 
+        type: string
+        description: '<p>The date time this document was created. This is an ISO8601 formatted datetime. Example: 2020-01-01T08:06:26</p>'
+      MailType: 
+        type: string
+        description: '<p>The type of mail item, not applicable to document submitted through the document service</p>'
+        maxLength: 12
+      Description: 
+        type: string
+        description: '<p>The description of the document. For items submitted through the document service, this will be the description provided when the document was submitted. For mail items, this will be the title of the mail item.</p>'
+        maxLength: 255
+        minLength: 1
+      AccountType: 
+        type: string
+        description: '<p>The type of account associated to this document, if relevant</p>'
+        maxLength: 6
+      AccountID: 
+        type: string
+        description: '<p>The account ID of the account associated to this document, if relevant</p>'
+        maxLength: 30
+      FilingPeriod: 
+        type: string
+        description: '<p>The filing period associated to this document, if relevant.  This is an ISO8601 formatted datetime. Example: 2020-01-01T00:00:00. If not applicable, will be returned as ''9999-12-31''.</p>'
+      FileName: 
+        type: string
+        description: '<p>The file name of the file submitted through the document service</p>'
+        maxLength: 255
+      DocumentCategory: 
+        type: string
+        description: '<p>The category of the document submitted through the document service</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>GENATC</td><td>Generic attachment</td></tr><tr><td>RTNFIN</td><td>Financial statements for a return</td></tr></tbody></table>'
+        maxLength: 15
+        enum: 
+          - GENATC
+          - RTNFIN
+          - ""
+      Document: 
+        type: string
+        description: '<p>The byte array of a file as a base 64 encoded string</p>'
+        minLength: 1
+  document_GET_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC301</td><td>A document cannot be found for that document ID.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC301
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_GET_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  document_GET_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC301</td><td>A document cannot be found for that document ID.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC301
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  list_POST_Response200: 
+    type: object
+    required: 
+      - Documents
+    properties: 
+      Documents: 
+        type: array
+        items: 
+          type: object
+          required: 
+            - DocumentID
+            - DateTimeCreated
+            - Description
+          properties: 
+            DocumentID: 
+              type: number
+              format: int64
+              description: '<p>The unique identifier of a document that can be retrieved through the document service.</p>'
+            DateTimeCreated: 
+              type: string
+              description: '<p>The date time this document was created. This is an ISO8601 formatted datetime. Example: 2020-01-01T08:06:26</p>'
+            MailType: 
+              type: string
+              description: '<p>The type of mail item, not applicable to document submitted through the document service</p>'
+              maxLength: 12
+            Description: 
+              type: string
+              description: '<p>The description of the document. For items submitted through the document service, this will be the description provided when the document was submitted. For mail items, this will be the title of the mail item.</p>'
+              maxLength: 255
+              minLength: 1
+            AccountType: 
+              type: string
+              description: '<p>The type of account associated to this document, if relevant</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>AIL</td><td>Approved issuer levy</td></tr><tr><td>AIP</td><td>AIP</td></tr><tr><td>CAD</td><td>Casino duty</td></tr><tr><td>CPR</td><td>Receiving carer</td></tr><tr><td>CRS</td><td>CRS</td></tr><tr><td>DWT</td><td>Dividend withholding tax</td></tr><tr><td>EMP</td><td>Payroll</td></tr><tr><td>EQU</td><td>Income Equalisation</td></tr><tr><td>ERA</td><td>Environmental Restoration</td></tr><tr><td>FAM</td><td>Working for Families</td></tr><tr><td>FAT</td><td>FATCA</td></tr><tr><td>FBT</td><td>FBT</td></tr><tr><td>FTR</td><td>NZ foreign trust</td></tr><tr><td>GMD</td><td>Gaming machine duty</td></tr><tr><td>GSD</td><td>GST satisfaction of debt</td></tr><tr><td>GST</td><td>GST</td></tr><tr><td>INC</td><td>Income tax</td></tr><tr><td>IPS</td><td>RWT on interest</td></tr><tr><td>KSF</td><td>KiwiSaver scheme</td></tr><tr><td>LOD</td><td>Lottery duty</td></tr><tr><td>MPO</td><td>Multi payment option</td></tr><tr><td>NCP</td><td>Liable parent</td></tr><tr><td>NRT</td><td>Non-resident withholding tax</td></tr><tr><td>PIE</td><td>Portfolio investment entity</td></tr><tr><td>PRS</td><td>Payroll subsidy</td></tr><tr><td>RDI</td><td>R&D Tax Incentive</td></tr><tr><td>REB</td><td>Donation tax credit</td></tr><tr><td>RLT</td><td>Residential land withholding tax</td></tr><tr><td>RSP</td><td>Resurgence Support Payment</td></tr><tr><td>RUL</td><td>Rulings and determinations</td></tr><tr><td>RWT</td><td>Resident withholding tax</td></tr><tr><td>SBC</td><td>Small Business loan</td></tr><tr><td>SLS</td><td>Student loan</td></tr><tr><td>TOD</td><td>Totalisator duty</td></tr><tr><td>TPA</td><td>Tax Pooling Account</td></tr><tr><td>UCM</td><td>Unclaimed money holder</td></tr><tr><td></td><td></td></tr></tbody></table>'
+              maxLength: 3
+              enum: 
+                - AIL
+                - AIP
+                - CAD
+                - CPR
+                - CRS
+                - DWT
+                - EMP
+                - EQU
+                - ERA
+                - FAM
+                - FAT
+                - FBT
+                - FTR
+                - GMD
+                - GSD
+                - GST
+                - INC
+                - IPS
+                - KSF
+                - LOD
+                - MPO
+                - NCP
+                - NRT
+                - PIE
+                - PRS
+                - RDI
+                - REB
+                - RLT
+                - RSP
+                - RUL
+                - RWT
+                - SBC
+                - SLS
+                - TOD
+                - TPA
+                - UCM
+                - ""
+            AccountID: 
+              type: string
+              description: '<p>The account ID of the account associated to this document, if relevant</p>'
+              maxLength: 30
+            FilingPeriod: 
+              type: string
+              description: '<p>The filing period associated to this document, if relevant.  This is an ISO8601 formatted datetime. Example: 2020-01-01T00:00:00. If not applicable, will be returned as ''9999-12-31''.</p>'
+            Redirected: 
+              type: boolean
+              description: '<p>Indicates that the mail item has been redirected</p>'
+            FileName: 
+              type: string
+              description: '<p>The file name of the file submitted through the document service</p>'
+              maxLength: 255
+            DocumentCategory: 
+              type: string
+              description: '<p>The category of the document submitted through the document service</p><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>GENATC</td><td>Generic attachment</td></tr><tr><td>RTNFIN</td><td>Financial statements for a return</td></tr></tbody></table>'
+              maxLength: 15
+              enum: 
+                - GENATC
+                - RTNFIN
+  list_POST_Response400: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC401</td><td>One, and only one, of IRDNumber or ExtID should be present.</td></tr><tr><td>DOC402</td><td>If ExtID is provided, ExtIDType must be provided as well.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>EV2302</td><td>The To date field cannot be before the From date field</td></tr><tr><td>KS0113</td><td>Future dated field. This field must be today or in the past.</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC401
+                - DOC402
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+                - EV2234
+                - EV2302
+                - KS0113
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  list_POST_Response500: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>EU6001</td><td>Unexpected error occurred</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - EU6001
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
+  list_POST_ResponseDefault: 
+    type: object
+    required: 
+      - errors
+    properties: 
+      errors: 
+        type: array
+        description: Validation array
+        items: 
+          type: object
+          description: Errors Object
+          required: 
+            - code
+            - type
+            - message
+          properties: 
+            code: 
+              type: string
+              description: 'Error code for validation, security, or server type responses.<br><br><table><tbody><tr><th>code</th><th>description</th></tr><tr><td>DOC401</td><td>One, and only one, of IRDNumber or ExtID should be present.</td></tr><tr><td>DOC402</td><td>If ExtID is provided, ExtIDType must be provided as well.</td></tr><tr><td>EV1020</td><td>Authentication failure means the token (JWT or OAuth) provided is not valid</td></tr><tr><td>EV1021</td><td>No OAuth or JWT token is present as an HTTP header</td></tr><tr><td>EV1022</td><td>Access is not permitted for the requester to perform this operation for the submitted identifier</td></tr><tr><td>EV1100</td><td>Invalid input parameters. Please check documentation</td></tr><tr><td>EV2234</td><td>IR number failed check digit</td></tr><tr><td>EV2302</td><td>The To date field cannot be before the From date field</td></tr><tr><td>KS0113</td><td>Future dated field. This field must be today or in the past.</td></tr></tbody></table>'
+              maxLength: 6
+              enum: 
+                - DOC401
+                - DOC402
+                - EV1020
+                - EV1021
+                - EV1022
+                - EV1100
+                - EV2234
+                - EV2302
+                - KS0113
+            type: 
+              type: string
+              description: Type of validation code returned
+              enum: 
+                - result
+                - security
+                - server
+                - validation
+            message: 
+              type: string
+              description: Error Message
