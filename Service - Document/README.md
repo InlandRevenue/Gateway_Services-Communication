@@ -16,7 +16,7 @@ The Document Service enables documents to be retrieved by external software plat
 ## Key documentation
 
 - YAML file
-	- View and download [Document service YAML file](Document%202020-11-04.yaml)
+	- View and download [Document service YAML file](Document%202021-04-21.yaml)
 
 - Build pack
 	- [Download the Document service build pack](Build%20pack%20-%20Document%20Service.pdf)
