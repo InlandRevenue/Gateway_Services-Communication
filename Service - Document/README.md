@@ -70,9 +70,9 @@ The Document Service enables documents to be retrieved by external software plat
 
 Description | URL
 ---|---
- Landing Page | https://mock-doc.ird.digitalpartner.services
+ Landing Page |  https://document.test.services.ird.govt.nz
 
-#### Mock URL - `https://mock-doc.ird.digitalpartner.services/secure/gateway/document/{Service}`
+#### Mock URL - ` https://document.test.services.ird.govt.nz/gateway/document/{Service}`
 | Service | HTTP request types | Description | 
 | :--: | :--: | -- |
 | document  | `GET` | This web service will get the document for a given document ID | 
