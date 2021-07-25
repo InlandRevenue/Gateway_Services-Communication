@@ -69,8 +69,8 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 ### Mock emulated service URL
 Description | URL
 ---|---
- Landing Page | https://mock-not.ird.digitalpartner.services
- Service Endpoint | https://mock-not.ird.digitalpartner.services/secure/gateway/notification/list 
+ Landing Page |  https://notification.test.services.ird.govt.nz
+ Service Endpoint |  https://notification.test.services.ird.govt.nz/gateway/notification/list 
 
 >**NOTE:** The `status` service might not be available in the mock environment.
 
