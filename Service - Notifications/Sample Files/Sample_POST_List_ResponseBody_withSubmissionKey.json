@@ -1,0 +1,23 @@
+{
+    "Notifications": [
+        {
+            "NotificationKey": 1004757921705,
+            "Category": "5",
+            "SubCategory": "IncomeTax",
+            "Type": "RTNINN",
+            "Description": "An automatic income tax assessment requires more information to finalise",
+            "DocumentLocationID": 0,
+            "DocumentID": 1004757920867,
+            "ExtID": "340967808",
+            "ExtIDType": "RTNSUB",
+            "ID": "139442164INC002",
+            "IDType": "ACC",
+            "SubjectID": "",
+            "SubjectIDType": "",
+            "RecordCreated": "2021-05-20T12:38:39",
+            "EventDate": "2021-05-20T12:38:39",
+            "FilingPeriod": "2021-03-31",
+            "DueDate": "9999-12-31"
+        }
+    ]
+}

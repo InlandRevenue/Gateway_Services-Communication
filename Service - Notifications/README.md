@@ -3,8 +3,6 @@
 
 # Notifications Service 
 
-#### Release version 1.0 19/05/2020
-
 ## About the service
 
 The Notifications service delivers read-only notifications to software platforms, with the necessary metadata to describe an underlying event. The receiver of the notification will decide if further information and/or action is needed to respond to the notification.
@@ -22,7 +20,7 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 ## Key documentation
 
 - YAML file
-	- View and download the [Notifications 2021-02-26.yaml](Notifications%202021-02-26.yaml)
+	- View and download the [Notifications API YAML](Notifications%2020230331.yaml)
 
 - Build pack
 	- [Download the Notifications build pack](Build%20pack%20-%20Notifications%20v1.pdf)
@@ -30,14 +28,12 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 - Message samples
 	- [View message samples for requests and responses](#message-samples)
 
->**NOTE:** The included [Notifications 2020-10-27.yaml](Notifications%202020-10-27.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
+>**NOTE:** The included [Notifications 2020-10-27.yaml](Notifications%2020230331.yaml) file can be used along with an OpenAPI editor such as [editor.swagger.io](https://editor.swagger.io) to view technical specifications for this operation and generate example client code. 
 
 
 ## Environment information
 
 * [Mock environment information - emulated services, mindmap and test data](#mock-environment-information)
-
-* [Test environment information - URL endpoints](#test-environment-information)
 
 * [Production environment information - URL endpoint](#prod-environment-information)
 
@@ -60,8 +56,12 @@ The [Document service](../Service%20-%20Document/) can be used to retrieve, subm
 	* POST /List - Notification Service List
 		* [Request body with all fields](Sample%20Files/Sample_POST_List_RequestBody.json)
 		* [Request body with mandatory fields](Sample%20Files/Sample_POST_List_RequestBody_Mandatory.json)
+		* [Request body KSSchemeProvider](Sample%20Files/Sample_POST_List_RequestBody_KSSchemeProvider.json)
 		* [200 Response body](Sample%20Files/Sample_POST_List_ResponseBody.json)
+		* [200 Response body with PIR](Sample%20Files/Sample_POST_List_ResponseBody_withPIR.json)
+		* [200 Response body withSubmission Key](Sample%20Files/Sample_POST_List_ResponseBody_withSubmissionKey.json)
 		* [400 Response body](Sample%20Files/Sample_Error_ResponseBody.json)
+		
 
 <a name="mock-environment-information"></a>
 ## Mock environment information
@@ -71,8 +71,6 @@ Description | URL
 ---|---
  Landing Page |  https://notification.test.services.ird.govt.nz
  Service Endpoint |  https://notification.test.services.ird.govt.nz/gateway/notification/list 
-
->**NOTE:** The `status` service might not be available in the mock environment.
 
 ### Mock environment authentication
    * Consumers of this mock service must be authenticated.
@@ -98,8 +96,8 @@ Description | URL
 
 ### Notifications mock scenarios mind map
 
-- [View larger image](images/Notification%20Mock%20Service%20Scenarios.png)
-![Mock Scenarios](images/Notification%20Mock%20Service%20Scenarios.png)
+- [View larger image](images/Notifications_Mock_Mindmap.png)
+![Mock Scenarios](images/Notifications_Mock_Mindmap.png)
 
 ### Test data
 
@@ -123,22 +121,8 @@ Description | URL
 | [MOCK-NOT-020] | QueryIDType": "LSTID", <br/> QueryID": "139023668", <br/> FromDateTime": "2018-05-10T01:02:06"                          | 200         | List with some Notifications                   |
 | [MOCK-NOT-021] | QueryIDType": "CLTLID", <br/> QueryID": "1080017", <br/> FromDateTime": "2018-05-10T01:02:06"                         | 200         | List with some Notifications                   |
 | [MOCK-NOT-022] | QueryIDType": "IRD" <br/> QueryID": "139026551",<br/>FromDateTime": "2018-05-10T01:02:06"                           | 200         | List containing Employer related Notifications |
-| [MOCK-NOT-023] | QueryIDType": "IRD" <br/> QueryID": "139112583",<br/>FromDateTime": "2018-05-10T01:02:06"                             | 200         | List containing PIR related Notifications      |
-
-	
----
-<a name="test-environment-information"></a>
-## Test environment information
-
-#### Testing URL - `https://test5.services.ird.govt.nz:4046/gateway/notification/{Service}`
-| Service | HTTP request types | Description | 
-| :--: | :--: | -- |
-| list | `POST` | This web service is used to retrieve notifications for a given customer | 
-| status | `GET` | This web service sends a 200 HTTP response with a message body of `OK`. This is preferred over service "ping" functionality as this should validate the service and credential configuration | 
-
->**NOTE:** These endpoints are subject to change due to environment updates in the future.
-
-### Test scenarios report template
+| [MOCK-NOT-023] | QueryIDType": "IRD" <br/> QueryID": "139442164",<br/>FromDateTime": "2018-05-10T01:02:06"                             | 200         | List containing IncomeTax and SubmissionKey Notifications |
+| [MOCK-NOT-024] | QueryIDType": "KSF" <br/> QueryID": "KSS/11111",<br/>FromDateTime": "2018-05-10T01:02:06"                             | 200         | List containing PIR related Notifications  |
 
 - [Download Test Scenarios report template](Notifications%20Service%20-%20Test%20Scenarios%20Report%20Template.docx)
 
@@ -146,9 +130,8 @@ Description | URL
 <a name="prod-environment-information"></a>
 ## Prod environment information
 
-
 #### Production URL - `https://services.ird.govt.nz:4046/gateway/notification/{Service}`
 | Service | HTTP request types | Description | 
 | :--: | :--: | -- |
 | list | `POST` | This web service is used to retrieve notifications for a given customer | 
-| status* | `GET` | This web service sends a 200 HTTP response with a message body of "OK". This is preferred over service "ping" functionality as this should validate the service and credential configuration | 
+| status | `GET` | Response 200 HTTP response with a message body of `OK`. This is used to validate the service and credential configuration. |
